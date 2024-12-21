@@ -7,13 +7,19 @@ const {
   deleteUser,
   updateUser,
   forgotPassword,
+  enterPassword,
+  updatePassword,
+  getProfile,
 } = require("../controllers/userController");
 const authUser = require("../middleware/authmidlleware");
 
 router.post("/register", register);
 router.post("/login", login);
 router.delete("/delete", authUser, deleteUser);
+router.get("/profile", authUser, getProfile);
 router.put("/update", authUser, updateUser);
 router.post("/forgot", forgotPassword);
+router.get("/token/:resettoken", enterPassword);
+router.post("/token/:resettoken", updatePassword);
 
 module.exports = router;

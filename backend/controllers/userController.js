@@ -40,7 +40,7 @@ const login = async (req, res) => {
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      res.json({ message: "User Not found", success: false });
+      res.json({ message: "password not matched", success: false });
     }
     const token = await jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
     return res
@@ -125,7 +125,7 @@ function forget(email, resetToken) {
       from: '" 🙌✌SocialConnect" <adityakumar262003@gmail.com>', // sender address
       to: email, // list of receivers
       subject: "Reset Password🤦‍♂️", // Subject line
-      text: `Please click below link to reset your password \n "http://localhost:80808/${resetToken}"`, // plain text body
+      text: `Please click below link to reset your password \n "http://localhost:8080/user/token/${resetToken}"`, // plain text body
     });
 
     // console.log("Message sent: %s", info.messageId);
@@ -134,5 +134,50 @@ function forget(email, resetToken) {
 
   main().catch(console.error);
 }
+const enterPassword = async (req, res) => {
+  let token = req.params.resettoken;
+  const user = await userModel.findOne({ resetToken: token });
+  if (user) {
+    res.render("resetPassword.ejs", { token });
+  }
+};
 
-module.exports = { register, login, deleteUser, updateUser, forgotPassword };
+const updatePassword = async (req, res) => {
+  const { password } = req.body;
+  const token = req.params.resettoken;
+
+  const user = await userModel.findOne({ resetToken: token });
+  if (user) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    user.password = hashedPassword;
+    user.resetToken = null;
+    await user.save();
+    res.json({ message: "User password updated successfull", success: true });
+  } else {
+    res.json({ message: "Something gone wrong", success: flase });
+  }
+};
+
+const getProfile = async (req, res) => {
+  try {
+    const userId = req.user;
+    const user = await userModel.findById(userId);
+    return res
+      .status(200)
+      .json({ message: "Profile get successfully", success: true, user });
+  } catch (error) {
+    return res.status(400).json({ message: error.message, success: false });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  deleteUser,
+  updateUser,
+  forgotPassword,
+  enterPassword,
+  updatePassword,
+  getProfile,
+};
