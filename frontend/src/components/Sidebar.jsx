@@ -15,10 +15,12 @@ import { Button } from "./ui/button";
 import axios from "axios";
 import { toast } from "react-toastify";
 import UserContext from "@/context/UserContext";
-import { Loader2 } from "lucide-react";
+import { Loader2, MessageCircle, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   let ctx = useContext(UserContext);
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     title: "",
     description: "",
@@ -28,6 +30,14 @@ const Sidebar = () => {
   const handleInputchange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+  // const getAllPosts = async () => {
+  //   const res = await axios.get("http://localhost:8080/post/getallpost");
+  //   const data = res.data;
+  //   // console.log(data);
+  //   if (data.success) {
+  //     setPosts(data.posts);
+  //   }
+  // };
   const handleFilechange = async (e) => {
     setLoading(true);
     let file = e.target.files[0];
@@ -64,21 +74,20 @@ const Sidebar = () => {
     let data = res.data;
     if (data.success) {
       toast.success(data.message, { autoClose: 1000 });
+      ctx.getAllPosts();
       setInput({});
     }
   };
   return (
-    <div className=" w-[20%] h-screen mt-0 text-center px-6 border-r-2 border-black">
-      <div className="flex gap-4 p-2 rounded-md hover:bg-gray-200  items-center ">
+    <div>
+      <div className="flex gap-4 border-b-2  rounded-md hover:bg-gray-200  items-center ">
         <Dialog>
-          <DialogTrigger>
-            <div className="flex gap-4 px-2 py-1 rounded-md hover:bg-gray-200 w-full items-center ">
-              <FaRegPlusSquare className="text-3xl" />
+          <DialogTrigger className="flex gap-2 p-2 ">
+            <FaRegPlusSquare className="text-3xl" />
 
-              <button className="text-lg font-semibold outline-none">
-                Create Post
-              </button>
-            </div>
+            <button className="text-lg font-semibold outline-none">
+              Create Post
+            </button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -146,6 +155,17 @@ const Sidebar = () => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+      </div>
+      <div
+        onClick={() => navigate("/profile")}
+        className="flex gap-4 cursor-pointer border-b-2 px-2 py-2   rounded-md hover:bg-gray-200  items-center "
+      >
+        <User size={28} />
+        <h2 className="text-lg font-semibold outline-none">Profile</h2>
+      </div>
+      <div className="flex gap-4 border-b-2 px-2 py-2  cursor-pointer  rounded-md hover:bg-gray-200  items-center ">
+        <MessageCircle size={28} />
+        <h2 className="text-lg font-semibold outline-none">Message</h2>
       </div>
     </div>
   );

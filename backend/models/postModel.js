@@ -20,4 +20,24 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+postSchema.add({
+  comments: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+      },
+      text: {
+        type: String,
+      },
+    },
+  ],
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+});
+
 module.exports = mongoose.model("post", postSchema);

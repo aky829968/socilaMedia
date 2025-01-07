@@ -10,6 +10,8 @@ import UserContext from "./context/UserContext";
 import Navbar from "./components/Navbar";
 import Forgot from "./pages/Forgot";
 import Profile from "./pages/Profile";
+import FriendProfile from "./pages/FriendProfile";
+import Chat from "./pages/Chat";
 
 function App() {
   const ctx = useContext(UserContext);
@@ -27,6 +29,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/profile" element={login ? <Profile /> : <Login />} />
+          <Route path="/searchProfile" element={<FriendProfile />} />
+          <Route path="/chat" element={login ? <Chat /> : <Login />} />
         </Routes>
         <ToastContainer />
       </BrowserRouter>

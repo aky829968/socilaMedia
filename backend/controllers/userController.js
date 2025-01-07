@@ -6,7 +6,7 @@ var randomstring = require("randomstring");
 const nodemailer = require("nodemailer");
 
 const register = async (req, res) => {
-  const { name, email, password } = await req.body;
+  const { name, email, password, file } = await req.body;
   try {
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
@@ -18,6 +18,7 @@ const register = async (req, res) => {
       name,
       email,
       password: hashPassword,
+      profilePic: file,
     });
 
     return res
@@ -36,11 +37,11 @@ const login = async (req, res) => {
   try {
     const user = await userModel.findOne({ email });
     if (!user) {
-      res.json({ message: "User Not found", success: false });
+      return res.json({ message: "User Not found", success: false });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      res.json({ message: "password not matched", success: false });
+      return res.json({ message: "password not matched", success: false });
     }
     const token = await jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
     return res
@@ -67,7 +68,7 @@ const updateUser = async (req, res) => {
   let _id = req.user;
 
   try {
-    const { name, password } = req.body;
+    const { name, password, profilePic, coverPic, bio } = req.body;
 
     if (password) {
       var hashedPassword = await bcrypt.hash(password, 10);
@@ -76,6 +77,9 @@ const updateUser = async (req, res) => {
     await userModel.findByIdAndUpdate(_id, {
       name: name,
       password: hashedPassword,
+      profilePic,
+      coverPic,
+      bio,
     });
 
     return res
@@ -171,6 +175,82 @@ const getProfile = async (req, res) => {
   }
 };
 
+const getUsername = async (req, res) => {
+  let query = req.query.q;
+  let name = RegExp(query);
+  let users = await userModel.find({ name: name });
+  if (req.query.q) {
+    return res.json({
+      message: "User found successfully",
+      success: true,
+      users,
+    });
+  } else {
+    res.json({ users: [] });
+  }
+};
+
+const getFriendProfile = async (req, res) => {
+  let id = req.params.id;
+  try {
+    let user = await userModel.findById(id).select("-password -email");
+    return res.json({
+      message: "user found successfully",
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const followUser = async (req, res) => {
+  try {
+    const friendId = req.params.id;
+    const userId = req.user;
+
+    const userDetails = await userModel.findById(userId);
+    const friendDetails = await userModel.findById(friendId);
+    // console.log(userId);
+    if (!friendDetails.followers.includes(userId)) {
+      // console.log(userDetails);
+      // console.log(friendDetails);
+
+      friendDetails.followers.push(userId);
+      userDetails.following.push(friendId);
+      await userDetails.save();
+      await friendDetails.save();
+      return res.json({ message: "user followed successfully", success: true });
+    } else {
+      friendDetails.followers.pull(userId);
+      userDetails.following.pull(friendId);
+      await userDetails.save();
+      await friendDetails.save();
+      return res.json({
+        message: "user unfollowed successfully",
+        success: true,
+      });
+    }
+  } catch (error) {
+    return res.json({ message: error.message, success: false });
+  }
+};
+
+const getFollowers = async (req, res) => {
+  try {
+    const userId = req.user;
+
+    const userData = await userModel.findById(userId).populate({
+      path: "followers",
+    });
+    const followers = userData.followers;
+
+    return res.json({ message: "followers", success: true, followers });
+  } catch (error) {
+    return res.json({ message: error.message, success: false });
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -180,4 +260,8 @@ module.exports = {
   enterPassword,
   updatePassword,
   getProfile,
+  getUsername,
+  getFriendProfile,
+  followUser,
+  getFollowers,
 };

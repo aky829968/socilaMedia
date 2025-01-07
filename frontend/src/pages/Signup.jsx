@@ -5,10 +5,12 @@ import { toast } from "react-toastify";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     password: "",
+    file: "",
   });
 
   const handleInputChange = (e) => {
@@ -20,6 +22,20 @@ const Signup = () => {
     setUserData({ ...userData, [name]: value });
   };
 
+  const handleFilechange = async (e) => {
+    setLoading(true);
+    let file = e.target.files[0];
+    let formdata = new FormData();
+    formdata.append("file", file);
+    formdata.append("upload_preset", "social");
+    const res = await axios.post(
+      "https://api.cloudinary.com/v1_1/dydpnne8n/upload",
+      formdata
+    );
+    let data = await res.data;
+    setLoading(false);
+    setUserData({ ...userData, file: data.secure_url });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(userData);
@@ -112,12 +128,28 @@ const Signup = () => {
               type="password"
             />
           </div>
+          <div className="mt-4">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+              htmlFor="LoggingEmailAddress"
+            >
+              Profile Pic
+            </label>
+            <input
+              name="file"
+              accept="image/*"
+              onChange={handleFilechange}
+              id="LoggingEmailAddress"
+              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+              type="file"
+            />
+          </div>
           <div className="mt-6">
             <button
               onClick={handleSubmit}
               className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
             >
-              Sign Up
+              {loading ? "Loading...." : "Sign Up"}
             </button>
           </div>
           <div className="flex items-center justify-between mt-4">

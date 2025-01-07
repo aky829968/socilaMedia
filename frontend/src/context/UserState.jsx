@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserContext from "./UserContext";
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 const UserState = (props) => {
   const user = JSON.parse(localStorage.getItem("socialUser"));
@@ -8,7 +9,32 @@ const UserState = (props) => {
     login: user ? user.login : false,
     token: user ? user.token : "",
     userId: user ? user.userId : "",
+    user: "",
   });
+  const [posts, setPosts] = useState([]);
+  const getAllPosts = async () => {
+    const res = await axios.get("http://localhost:8080/post/getallpost");
+    const data = res.data;
+    // console.log(data);
+    if (data.success) {
+      setPosts(data.posts);
+    }
+  };
+  const getProfile = async () => {
+    let res = await axios.get("http://localhost:8080/user/profile", {
+      headers: {
+        Authorization: userDetails.token,
+      },
+    });
+    const data = res.data;
+    console.log(data);
+    setUserDetails({ ...userDetails, user: data.user });
+  };
+  useEffect(() => {
+    if (userDetails.token) {
+      getProfile();
+    }
+  }, [userDetails.token]);
 
   const addUserTo = (token) => {
     const decoded = jwtDecode(token);
@@ -17,6 +43,7 @@ const UserState = (props) => {
       "socialUser",
       JSON.stringify({ login: true, token: token, userId: decoded._id })
     );
+    // getAllPosts();
     setUserDetails({ login: true, token: token, userId: decoded._id });
   };
 
@@ -27,7 +54,15 @@ const UserState = (props) => {
 
   return (
     <UserContext.Provider
-      value={{ userDetails, setUserDetails, addUserTo, logout }}
+      value={{
+        userDetails,
+        setUserDetails,
+        getProfile,
+        addUserTo,
+        logout,
+        posts,
+        getAllPosts,
+      }}
     >
       {props.children}
     </UserContext.Provider>
