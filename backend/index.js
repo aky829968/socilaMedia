@@ -14,7 +14,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 const port = 8080;
 connectDb();
-app.use(cors());
+corsOptions = {
+  origin: "https://socila-media.vercel.app/",
+  credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
