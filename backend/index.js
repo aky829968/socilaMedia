@@ -15,7 +15,7 @@ dotenv.config();
 const port = 8080;
 connectDb();
 corsOptions = {
-  origin: "https://socila-media.vercel.app/",
+  origin: "https://socila-media.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 };
