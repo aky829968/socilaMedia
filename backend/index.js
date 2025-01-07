@@ -17,6 +17,7 @@ connectDb();
 corsOptions = {
   origin: "https://socila-media.vercel.app/",
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 };
 app.use(cors(corsOptions));
 app.use(express.json());
