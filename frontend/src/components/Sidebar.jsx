@@ -66,11 +66,15 @@ const Sidebar = () => {
   };
   const handleSubmit = async () => {
     console.log(input);
-    let res = await axios.post("http://localhost:8080/post/create", input, {
-      headers: {
-        Authorization: ctx.userDetails.token,
-      },
-    });
+    let res = await axios.post(
+      "https://socilamedia-1.onrender.com/post/create",
+      input,
+      {
+        headers: {
+          Authorization: ctx.userDetails.token,
+        },
+      }
+    );
     let data = res.data;
     if (data.success) {
       toast.success(data.message, { autoClose: 1000 });

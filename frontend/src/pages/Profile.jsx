@@ -29,7 +29,7 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
 
   const getProfile = async () => {
-    let res = await axios.get("http://localhost:8080/user/profile", {
+    let res = await axios.get("https://socilamedia-1.onrender.com/user/profile", {
       headers: {
         Authorization: ctx.userDetails.token,
       },
@@ -39,7 +39,7 @@ const Profile = () => {
     setUserData(data.user);
   };
   const getPosts = async () => {
-    const res = await axios.get("http://localhost:8080/post/getuserpost", {
+    const res = await axios.get("https://socilamedia-1.onrender.com/post/getuserpost", {
       headers: {
         Authorization: ctx.userDetails.token,
       },
@@ -69,7 +69,7 @@ const Profile = () => {
 
       try {
         const res1 = await axios.put(
-          "http://localhost:8080/user/update",
+          "https://socilamedia-1.onrender.com/user/update",
           { profilePic: data.secure_url },
           {
             headers: {
@@ -100,7 +100,7 @@ const Profile = () => {
 
       try {
         const res1 = await axios.put(
-          "http://localhost:8080/user/update",
+          "https://socilamedia-1.onrender.com/user/update",
           { coverPic: data.secure_url },
           {
             headers: {
@@ -124,7 +124,7 @@ const Profile = () => {
     console.log(updatedData);
     try {
       const res1 = await axios.put(
-        "http://localhost:8080/user/update",
+        "https://socilamedia-1.onrender.com/user/update",
         updatedData,
         {
           headers: {

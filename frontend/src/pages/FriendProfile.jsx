@@ -14,7 +14,7 @@ const FriendProfile = () => {
   const { userDetails } = useContext(UserContext);
   const getProfile = async () => {
     let res = await axios.get(
-      `http://localhost:8080/user/getFriendProfile/${location.state}`
+      `https://socilamedia-1.onrender.com/user/getFriendProfile/${location.state}`
     );
     const data = res.data;
     // console.log(data);

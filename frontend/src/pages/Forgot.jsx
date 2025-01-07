@@ -7,7 +7,7 @@ const Forgot = () => {
     const ans = {
       email: email,
     };
-    const res = await axios.post("http://localhost:8080/user/forgot", ans);
+    const res = await axios.post("https://socilamedia-1.onrender.com/user/forgot", ans);
     // console.log((await res).data.message);
     if ((await res).data.success) {
       toast.success("Check your Email for reset password", {

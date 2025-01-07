@@ -8,7 +8,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import { formatDistanceToNow } from "date-fns";
 
 const Chat = () => {
-  let EndPoint = "http://localhost:8080";
+  let EndPoint = "https://socilamedia-1.onrender.com";
   let socketRef = useRef("");
   const location = useLocation();
   const { userDetails } = useContext(UserContext);
@@ -23,7 +23,7 @@ const Chat = () => {
       message: inputRef.current.value,
     });
     const res = await axios.post(
-      `http://localhost:8080/message/sendmessage/${location.state._id}`,
+      `https://socilamedia-1.onrender.com/message/sendmessage/${location.state._id}`,
       { text: inputRef.current.value },
       {
         headers: {
@@ -40,7 +40,7 @@ const Chat = () => {
   };
   const getchat = async () => {
     const res = await axios.get(
-      `http://localhost:8080/message/getchat/${location.state._id}`,
+      `https://socilamedia-1.onrender.com/message/getchat/${location.state._id}`,
       {
         headers: {
           Authorization: userDetails.token,

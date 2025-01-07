@@ -34,7 +34,7 @@ const Posts = () => {
   const [selectedPost, setSelectedPost] = useState("");
   // const ctx.getAllctx.posts = ctx.ctx.getAllctx.posts;
   const getProfile = async () => {
-    let res = await axios.get("http://localhost:8080/user/profile", {
+    let res = await axios.get("https://socilamedia-1.onrender.com/user/profile", {
       headers: {
         Authorization: ctx.userDetails.token,
       },
@@ -57,7 +57,7 @@ const Posts = () => {
   // };
   const handleComment = async (id) => {
     const res = await axios.post(
-      `http://localhost:8080/post/comment/${id}`,
+      `https://socilamedia-1.onrender.com/post/comment/${id}`,
       {
         text: comment,
       },
@@ -78,7 +78,7 @@ const Posts = () => {
 
   const handleLike = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:8080/post/like/${id}`, {
+      const res = await axios.get(`https://socilamedia-1.onrender.com/post/like/${id}`, {
         headers: {
           Authorization: ctx.userDetails.token,
         },
@@ -96,7 +96,7 @@ const Posts = () => {
     try {
       // console.log(postId, commentId);
       let res = await axios.delete(
-        `http://localhost:8080/post/deleteComment/${postId}/${commentId}`
+        `https://socilamedia-1.onrender.com/post/deleteComment/${postId}/${commentId}`
       );
       const data = res.data;
       if (data.success) {

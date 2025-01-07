@@ -33,7 +33,7 @@ const Navbar = () => {
   const [userData, setUserData] = useState({});
   const [searchUsers, setSearchUsers] = useState([]);
   const getProfile = async () => {
-    let res = await axios.get("http://localhost:8080/user/profile", {
+    let res = await axios.get("https://socilamedia-1.onrender.com/user/profile", {
       headers: {
         Authorization: ctx.userDetails.token,
       },
@@ -49,7 +49,7 @@ const Navbar = () => {
   const handleInputchange = async (e) => {
     try {
       let res = await axios.get(
-        `http://localhost:8080/user/getuser?q=${e.target.value}`
+        `https://socilamedia-1.onrender.com/user/getuser?q=${e.target.value}`
       );
       let data = res.data;
       if (data.success) {
@@ -97,7 +97,7 @@ const Navbar = () => {
   };
   const handleSubmit = async () => {
     console.log(input);
-    let res = await axios.post("http://localhost:8080/post/create", input, {
+    let res = await axios.post("https://socilamedia-1.onrender.com/post/create", input, {
       headers: {
         Authorization: ctx.userDetails.token,
       },

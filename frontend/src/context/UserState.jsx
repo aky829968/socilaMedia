@@ -13,7 +13,9 @@ const UserState = (props) => {
   });
   const [posts, setPosts] = useState([]);
   const getAllPosts = async () => {
-    const res = await axios.get("http://localhost:8080/post/getallpost");
+    const res = await axios.get(
+      "https://socilamedia-1.onrender.com/post/getallpost"
+    );
     const data = res.data;
     // console.log(data);
     if (data.success) {
@@ -21,11 +23,14 @@ const UserState = (props) => {
     }
   };
   const getProfile = async () => {
-    let res = await axios.get("http://localhost:8080/user/profile", {
-      headers: {
-        Authorization: userDetails.token,
-      },
-    });
+    let res = await axios.get(
+      "https://socilamedia-1.onrender.com/user/profile",
+      {
+        headers: {
+          Authorization: userDetails.token,
+        },
+      }
+    );
     const data = res.data;
     console.log(data);
     setUserDetails({ ...userDetails, user: data.user });

@@ -25,7 +25,7 @@ const Login = () => {
     e.preventDefault();
     console.log(userData);
     const response = await axios.post(
-      "http://localhost:8080/user/login",
+      "https://socilamedia-1.onrender.com/user/login",
       userData
     );
     if (response.data.success) {

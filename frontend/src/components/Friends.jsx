@@ -10,11 +10,14 @@ const Friends = () => {
   const [followers, setFollowers] = useState([]);
   const getFollowers = async () => {
     try {
-      let res = await axios.get(`http://localhost:8080/user/followers`, {
-        headers: {
-          authorization: ctx.userDetails.token,
-        },
-      });
+      let res = await axios.get(
+        `https://socilamedia-1.onrender.com/user/followers`,
+        {
+          headers: {
+            authorization: ctx.userDetails.token,
+          },
+        }
+      );
       let data = res.data;
       if (data.success) {
         console.log(data.followers);
