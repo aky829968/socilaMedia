@@ -278,7 +278,7 @@ const Profile = () => {
       </div>
       <div className="mt-56 md:mt-44 border-gray-700   border-t-2">
         <h2 className="text-xl font-semibold text-red-500">All Posts</h2>
-        <div className=" flex flex-col  md:flex md:flex-row md:flex-wrap  justify-center">
+        <div className=" flex flex-col items-center  md:flex md:flex-row md:flex-wrap  md:justify-center">
           {posts?.map((ele) => {
             return (
               <div className="w-64 self-start       overflow-hidden bg-white  shadow-md dark:bg-gray-800">

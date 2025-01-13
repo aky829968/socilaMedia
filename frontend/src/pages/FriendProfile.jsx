@@ -60,60 +60,67 @@ const FriendProfile = () => {
   };
 
   return (
-    <div className="w-[85%]  mx-auto ">
-      <div className="h-[20vw] relative ">
-        <img className="w-full h-full" src={userData.coverPic} />
+    <div className="w-[95%] md:w-[85%]  mx-auto ">
+      <div className="max-h-[40vw] relative ">
+        <img className="w-full h-32 md:h-56" src={userData.coverPic} />
 
-        <div className="w-full h-56  -bottom-40  absolute left-[5%] ">
-          <div className="flex items-center justify-center    ">
-            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full h-36  w-40 flex items-center justify-center">
+        <div className="w-full h-max md:-bottom-40 md:top-52   absolute  top-28 md:left-[5%] ">
+          <div className="flex flex-row-reverse   md:flex md:flex-row items-center      ">
+            <div className=" w-[70%] md:w-auto">
               <img
-                className="w-32 h-32 rounded-full  border-white "
-                src={userData.profilePic}
+                className="w-[100%] h-40 z-10 rounded-full  border-white "
+                // src={userData.profilePic}
+                src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
               />
             </div>
 
-            <div className="flex h-32 items-center pt-8 w-full   justify-between px-6  mt-9">
+            <div className="md:flex h-32  md:items-baseline md:justify-between px-6 w-full">
               <div>
                 <h2 className=" text-2xl font-bold font-serif text-blue-600">
                   {userData.name}
+                  Adityya
                 </h2>
-                <p>{userData.bio}</p>
-                <div className="flex gap-10">
+                <p>{userData.bio}nsdsdn</p>
+                <div className="flex gap-1 md:gap-10">
                   <div className="font-medium text-center">
                     Followers
-                    <h2>{userData?.followers?.length}</h2>
+                    <h2>{userData?.followers?.length}0</h2>
                   </div>
                   <div className="font-medium text-center">
                     Following
                     <h2>{userData?.following?.length}</h2>
                   </div>
+                </div>
+              </div>
+              <div className=" flex flex-col gap-0 w-24 md:block">
+                <Button>
                   <Link
                     to="/chat"
                     state={userData}
-                    className="font-medium flex gap-2 text-white  bg-purple-600 px-4 pt-2 rounded-md"
+                    className="font-medium  flex gap-2 text-white  rounded-md"
                   >
                     <MessageCircle /> Chat
                   </Link>
-                </div>
+                </Button>
+
+                <Button
+                  onClick={handleFollow}
+                  variant="outline"
+                  className="bg-blue-600 text-white md:mr-12 md:mt-6"
+                >
+                  <MdFollowTheSigns />
+                  {userData?.followers?.includes(userDetails.userId)
+                    ? "Unfollow"
+                    : "Follow"}
+                </Button>
               </div>
-              <Button
-                onClick={handleFollow}
-                variant="outline"
-                className="bg-blue-600 text-white mr-12 mt-8"
-              >
-                <MdFollowTheSigns />
-                {userData?.followers?.includes(userDetails.userId)
-                  ? "Unfollow"
-                  : "Follow"}
-              </Button>
             </div>
           </div>
         </div>
       </div>
-      <div className="mt-40 border-gray-700   border-t-2">
+      <div className="mt-48 border-gray-700   border-t-2">
         <h2 className="text-xl font-semibold text-red-500">All Posts</h2>
-        <div className="flex flex-wrap  justify-center">
+        <div className="flex flex-col items-center  md:flex md:flex-row md:flex-wrap  md:justify-center">
           {posts.length != 0 ? (
             posts?.map((ele) => {
               return (
