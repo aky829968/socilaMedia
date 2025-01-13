@@ -150,8 +150,8 @@ const Profile = () => {
   };
   return (
     <div className=" w-[95%] md:w-[85%]  mx-auto ">
-      <div className="h-[20vw] relative ">
-        <img className="w-full h-full" src={userData.coverPic} />
+      <div className="  h-[22vw] relative ">
+        <img className="w-full h-32 md:h-56" src={userData.coverPic} />
         <label
           className="absolute top-4 left-4 bg-transparent  rounded-full p-1 cursor-pointer"
           htmlFor="cover"
@@ -166,13 +166,13 @@ const Profile = () => {
           id="cover"
         />
 
-        <div className="w-full h-max md:-bottom-40 md:top-32   absolute  top-20 md:left-[5%] ">
+        <div className="w-full h-max md:-bottom-40 md:top-52   absolute  top-20 md:left-[5%] ">
           <div className="flex flex-row-reverse   md:flex md:flex-row items-center    ">
-            <div className="   h-40  w-40 ">
+            <div className="       ">
               <img
-                className="w-32 h-32 rounded-full  border-white "
-                // src={userData.profilePic}
-                src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
+                className="w-40 h-40 z-10 rounded-full  border-white "
+                src={userData.profilePic}
+                // src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
               />
             </div>
             <label
@@ -192,16 +192,16 @@ const Profile = () => {
             <div className="md:flex h-32 md:items-baseline md:justify-between px-6 w-full ">
               <div>
                 <h2 className=" text-2xl font-bold font-serif text-blue-600">
-                  {/* {userData.name} */}
-                  Aditya Kuamr
+                  {userData.name}
+                  {/* Aditya Kuamr */}
                 </h2>
-                <p>{/* {userData.bio} */}I am a fullstack developer</p>
+                <p>{userData.bio}</p>
                 <div className="flex gap-10">
                   <div className="font-medium text-center">
                     Followers
                     <h2>
-                      {/* {userData?.followers?.length} */}
-                      97
+                      {userData?.followers?.length}
+                      {/* 97 */}
                     </h2>
                   </div>
                   <div className="font-medium text-center">

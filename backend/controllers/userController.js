@@ -18,8 +18,11 @@ const register = async (req, res) => {
       name,
       email,
       password: hashPassword,
-      profilePic: file,
     });
+    if (file) {
+      user.profilePic = file;
+      await user.save();
+    }
 
     return res
       .status(200)
