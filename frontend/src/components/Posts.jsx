@@ -34,11 +34,14 @@ const Posts = () => {
   const [selectedPost, setSelectedPost] = useState("");
   // const ctx.getAllctx.posts = ctx.ctx.getAllctx.posts;
   const getProfile = async () => {
-    let res = await axios.get("https://socilamedia-1.onrender.com/user/profile", {
-      headers: {
-        Authorization: ctx.userDetails.token,
-      },
-    });
+    let res = await axios.get(
+      "https://socilamedia-1.onrender.com/user/profile",
+      {
+        headers: {
+          Authorization: ctx.userDetails.token,
+        },
+      }
+    );
     const data = res.data;
     // console.log(data);
     setUserData(data.user);
@@ -78,11 +81,14 @@ const Posts = () => {
 
   const handleLike = async (id) => {
     try {
-      const res = await axios.get(`https://socilamedia-1.onrender.com/post/like/${id}`, {
-        headers: {
-          Authorization: ctx.userDetails.token,
-        },
-      });
+      const res = await axios.get(
+        `https://socilamedia-1.onrender.com/post/like/${id}`,
+        {
+          headers: {
+            Authorization: ctx.userDetails.token,
+          },
+        }
+      );
       const data = res.data;
       if (data.success) {
         // setLike(!like);
@@ -126,7 +132,7 @@ const Posts = () => {
     <div>
       <h2 className="font-bold">All Posts</h2>
       <div className="flex flex-col items-center gap-1">
-        {ctx.posts.map((ele) => {
+        {ctx.posts?.map((ele) => {
           return (
             <div className="max-w-1 min-w-96  overflow-hidden bg-slate-100 rounded-md shadow-md dark:bg-gray-800">
               <div className="mt-2 ms-6 flex ">

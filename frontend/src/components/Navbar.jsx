@@ -282,7 +282,7 @@ const Navbar = () => {
             About
           </Link>
           <Dialog>
-            <DialogTrigger className="text-gray-800 hover:text-gray-600">
+            <DialogTrigger className="text-gray-800 block hover:text-gray-600">
               Search Users
             </DialogTrigger>
             <DialogContent>

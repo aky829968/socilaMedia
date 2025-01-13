@@ -78,9 +78,9 @@ const FriendProfile = () => {
               <div>
                 <h2 className=" text-2xl font-bold font-serif text-blue-600">
                   {userData.name}
-                  Adityya
+                  
                 </h2>
-                <p>{userData.bio}nsdsdn</p>
+                <p>{userData.bio}</p>
                 <div className="flex gap-1 md:gap-10">
                   <div className="font-medium text-center">
                     Followers
