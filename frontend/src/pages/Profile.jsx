@@ -150,7 +150,7 @@ const Profile = () => {
   };
   return (
     <div className=" w-[95%] md:w-[85%]  mx-auto ">
-      <div className="  h-[22vw] relative ">
+      <div className=" max-h-[40vw] relative ">
         <img className="w-full h-32 md:h-56" src={userData.coverPic} />
         <label
           className="absolute top-4 left-4 bg-transparent  rounded-full p-1 cursor-pointer"
@@ -166,7 +166,7 @@ const Profile = () => {
           id="cover"
         />
 
-        <div className="w-full h-max md:-bottom-40 md:top-52   absolute  top-20 md:left-[5%] ">
+        <div className="w-full h-max md:-bottom-40 md:top-52   absolute  top-28 md:left-[5%] ">
           <div className="flex flex-row-reverse   md:flex md:flex-row items-center    ">
             <div className="       ">
               <img
@@ -189,13 +189,16 @@ const Profile = () => {
               id="profile"
             />
 
-            <div className="md:flex h-32 md:items-baseline md:justify-between px-6 w-full ">
+            <div className="md:flex h-32  md:items-baseline md:justify-between px-6 w-full ">
               <div>
                 <h2 className=" text-2xl font-bold font-serif text-blue-600">
                   {userData.name}
-                  {/* Aditya Kuamr */}
+                  Aditya Kuamr yadav
                 </h2>
-                <p>{userData.bio}</p>
+                <p>
+                  {userData.bio}
+                  lsdnndsndj sdnasdns sadnsdjsand dnasdsandas dajodnsdjn
+                </p>
                 <div className="flex gap-10">
                   <div className="font-medium text-center">
                     Followers
@@ -273,7 +276,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="mt-44 border-gray-700   border-t-2">
+      <div className="mt-56 md:mt-44 border-gray-700   border-t-2">
         <h2 className="text-xl font-semibold text-red-500">All Posts</h2>
         <div className=" flex flex-col  md:flex md:flex-row md:flex-wrap  justify-center">
           {posts?.map((ele) => {

@@ -28,7 +28,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<Forgot />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={login ? <Profile /> : <Login />} />
           <Route path="/searchProfile" element={<FriendProfile />} />
           <Route path="/chat" element={login ? <Chat /> : <Login />} />
         </Routes>
