@@ -5,7 +5,7 @@ import Friends from "@/components/Friends";
 
 const Home = () => {
   return (
-    <div className="mt-0 flex   gap-16 px-4">
+    <div className="mt-0 flex  px-0 gap-16 md:px-4">
       <div className=" hidden md:block w-[20%] h-screen mt-0 text-center border-r-2 border-black">
         <Sidebar />
       </div>

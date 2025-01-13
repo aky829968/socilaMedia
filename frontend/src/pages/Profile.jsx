@@ -29,21 +29,27 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
 
   const getProfile = async () => {
-    let res = await axios.get("https://socilamedia-1.onrender.com/user/profile", {
-      headers: {
-        Authorization: ctx.userDetails.token,
-      },
-    });
+    let res = await axios.get(
+      "https://socilamedia-1.onrender.com/user/profile",
+      {
+        headers: {
+          Authorization: ctx.userDetails.token,
+        },
+      }
+    );
     const data = res.data;
     // console.log(data);
     setUserData(data.user);
   };
   const getPosts = async () => {
-    const res = await axios.get("https://socilamedia-1.onrender.com/post/getuserpost", {
-      headers: {
-        Authorization: ctx.userDetails.token,
-      },
-    });
+    const res = await axios.get(
+      "https://socilamedia-1.onrender.com/post/getuserpost",
+      {
+        headers: {
+          Authorization: ctx.userDetails.token,
+        },
+      }
+    );
     const data = res.data;
     // console.log(data);
     setPosts(data.posts);
@@ -143,7 +149,7 @@ const Profile = () => {
     }
   };
   return (
-    <div className="w-[85%]  mx-auto ">
+    <div className=" w-[95%] md:w-[85%]  mx-auto ">
       <div className="h-[20vw] relative ">
         <img className="w-full h-full" src={userData.coverPic} />
         <label
@@ -160,16 +166,17 @@ const Profile = () => {
           id="cover"
         />
 
-        <div className="w-full h-56 -bottom-40  absolute left-[5%] ">
-          <div className="flex items-center    ">
-            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full  h-36  w-40 flex items-center justify-center">
+        <div className="w-full h-max md:-bottom-40 md:top-32   absolute  top-20 md:left-[5%] ">
+          <div className="flex flex-row-reverse   md:flex md:flex-row items-center    ">
+            <div className="   h-40  w-40 ">
               <img
                 className="w-32 h-32 rounded-full  border-white "
-                src={userData.profilePic}
+                // src={userData.profilePic}
+                src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
               />
             </div>
             <label
-              className="absolute top-4 left-4 bg-transparent  rounded-full p-1 cursor-pointer"
+              className="absolute top-4 left-[70%] md:top-4 md:left-4 bg-transparent  rounded-full p-1 cursor-pointer"
               htmlFor="profile"
             >
               <CameraIcon size={25} />
@@ -182,16 +189,20 @@ const Profile = () => {
               id="profile"
             />
 
-            <div className="flex h-32 items-baseline justify-between px-6 w-full mt-9">
+            <div className="md:flex h-32 md:items-baseline md:justify-between px-6 w-full ">
               <div>
                 <h2 className=" text-2xl font-bold font-serif text-blue-600">
-                  {userData.name}
+                  {/* {userData.name} */}
+                  Aditya Kuamr
                 </h2>
-                <p>{userData.bio}</p>
+                <p>{/* {userData.bio} */}I am a fullstack developer</p>
                 <div className="flex gap-10">
                   <div className="font-medium text-center">
                     Followers
-                    <h2>{userData?.followers?.length}</h2>
+                    <h2>
+                      {/* {userData?.followers?.length} */}
+                      97
+                    </h2>
                   </div>
                   <div className="font-medium text-center">
                     Following
@@ -204,7 +215,7 @@ const Profile = () => {
                 <DialogTrigger>
                   <Button
                     variant="outline"
-                    className="bg-blue-600 text-white mr-12 mt-8"
+                    className="bg-blue-600 text-white md:mr-12 md:mt-8"
                   >
                     <Edit2 />
                     Edit Profile
@@ -267,9 +278,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="mt-40 border-gray-700   border-t-2">
+      <div className="mt-44 border-gray-700   border-t-2">
         <h2 className="text-xl font-semibold text-red-500">All Posts</h2>
-        <div className="flex flex-wrap  justify-center">
+        <div className=" flex flex-col  md:flex md:flex-row md:flex-wrap  justify-center">
           {posts?.map((ele) => {
             return (
               <div className="w-64 self-start       overflow-hidden bg-white  shadow-md dark:bg-gray-800">
