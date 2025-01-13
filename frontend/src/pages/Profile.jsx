@@ -22,9 +22,9 @@ const Profile = () => {
   const ctx = useContext(UserContext);
   const [userData, setUserData] = useState("");
   const [updatedData, setUpdatedData] = useState({
-    name: "",
-    password: "",
-    bio: "",
+    name: userData ? userData.name : "",
+
+    bio: userData ? userData.bio : "",
   });
   const [posts, setPosts] = useState([]);
 
@@ -232,6 +232,7 @@ const Profile = () => {
                           className="px-4 py-2 rounded-md outline-none border-2 border-zinc-300"
                           type="text"
                           name="name"
+                          value={updatedData.name}
                           onChange={handleInputchange}
                           placeholder="Name"
                         />
@@ -239,15 +240,9 @@ const Profile = () => {
                           className="px-4 py-2 rounded-md outline-none border-2 border-zinc-300"
                           type="text"
                           name="bio"
+                          value={userData?.bio}
                           onChange={handleInputchange}
                           placeholder="Bio"
-                        />
-                        <input
-                          className="px-4 py-2 rounded-md outline-none border-2 border-zinc-300"
-                          type="password"
-                          name="password"
-                          onChange={handleInputchange}
-                          placeholder="Password"
                         />
                       </div>
                     </DialogDescription>
