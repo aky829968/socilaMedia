@@ -168,9 +168,9 @@ const Profile = () => {
 
         <div className="w-full h-max md:-bottom-40 md:top-52   absolute  top-28 md:left-[5%] ">
           <div className="flex flex-row-reverse   md:flex md:flex-row items-center    ">
-            <div className="       ">
+            <div className="   w-[70%] md:w-auto    ">
               <img
-                className="w-40 h-40 z-10 rounded-full  border-white "
+                className="w-[100%] h-40 z-10 rounded-full  border-white "
                 src={userData.profilePic}
                 // src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
               />
@@ -193,12 +193,8 @@ const Profile = () => {
               <div>
                 <h2 className=" text-2xl font-bold font-serif text-blue-600">
                   {userData.name}
-                  Aditya Kuamr yadav
                 </h2>
-                <p>
-                  {userData.bio}
-                  lsdnndsndj sdnasdns sadnsdjsand dnasdsandas dajodnsdjn
-                </p>
+                <p>{userData.bio}</p>
                 <div className="flex gap-10">
                   <div className="font-medium text-center">
                     Followers
@@ -276,7 +272,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="mt-56 md:mt-44 border-gray-700   border-t-2">
+      <div className="mt-64 md:mt-44 border-gray-700   border-t-2">
         <h2 className="text-xl font-semibold text-red-500">All Posts</h2>
         <div className=" flex flex-col items-center  md:flex md:flex-row md:flex-wrap  md:justify-center">
           {posts?.map((ele) => {

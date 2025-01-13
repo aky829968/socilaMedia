@@ -84,7 +84,7 @@ const FriendProfile = () => {
                 <div className="flex gap-1 md:gap-10">
                   <div className="font-medium text-center">
                     Followers
-                    <h2>{userData?.followers?.length}0</h2>
+                    <h2>{userData?.followers?.length}</h2>
                   </div>
                   <div className="font-medium text-center">
                     Following
@@ -118,7 +118,7 @@ const FriendProfile = () => {
           </div>
         </div>
       </div>
-      <div className="mt-48 border-gray-700   border-t-2">
+      <div className="mt-64 border-gray-700   border-t-2">
         <h2 className="text-xl font-semibold text-red-500">All Posts</h2>
         <div className="flex flex-col items-center  md:flex md:flex-row md:flex-wrap  md:justify-center">
           {posts.length != 0 ? (
