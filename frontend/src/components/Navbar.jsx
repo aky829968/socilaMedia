@@ -33,11 +33,14 @@ const Navbar = () => {
   const [userData, setUserData] = useState({});
   const [searchUsers, setSearchUsers] = useState([]);
   const getProfile = async () => {
-    let res = await axios.get("https://socilamedia-1.onrender.com/user/profile", {
-      headers: {
-        Authorization: ctx.userDetails.token,
-      },
-    });
+    let res = await axios.get(
+      "https://socilamedia-1.onrender.com/user/profile",
+      {
+        headers: {
+          Authorization: ctx.userDetails.token,
+        },
+      }
+    );
     const data = res.data;
     // console.log(data);
     setUserData(data.user);
@@ -97,11 +100,15 @@ const Navbar = () => {
   };
   const handleSubmit = async () => {
     console.log(input);
-    let res = await axios.post("https://socilamedia-1.onrender.com/post/create", input, {
-      headers: {
-        Authorization: ctx.userDetails.token,
-      },
-    });
+    let res = await axios.post(
+      "https://socilamedia-1.onrender.com/post/create",
+      input,
+      {
+        headers: {
+          Authorization: ctx.userDetails.token,
+        },
+      }
+    );
     let data = res.data;
     if (data.success) {
       toast.success(data.message, { autoClose: 1000 });
@@ -274,6 +281,47 @@ const Navbar = () => {
           >
             About
           </Link>
+          <Dialog>
+            <DialogTrigger className="text-gray-800 hover:text-gray-600">
+              Search Users
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle className="mb-4">Search New Friend</DialogTitle>
+                <DialogDescription>
+                  <div className="flex flex-col gap-4 ">
+                    <input
+                      className="px-4 py-2 rounded-md outline-none border-2 border-zinc-300"
+                      type="text"
+                      name=""
+                      onChange={handleInputchange}
+                      placeholder="Search new friends"
+                    />
+                    <ul>
+                      {searchUsers.map((ele) => {
+                        return (
+                          ele._id !== userData._id && (
+                            <DialogClose asChild>
+                              <Link state={ele._id} to="/searchProfile">
+                                <li className="flex gap-2 items-center">
+                                  <img
+                                    className="w-10 h-10 rounded-full "
+                                    src={ele.profilePic}
+                                  />
+                                  <h2>{ele.name}</h2>
+                                </li>
+                              </Link>
+                            </DialogClose>
+                          )
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="sm:justify-start"></DialogFooter>
+            </DialogContent>
+          </Dialog>
           <Dialog>
             <DialogTrigger className=" ">
               <button className="text-gray-800 block hover:text-gray-600 transition">

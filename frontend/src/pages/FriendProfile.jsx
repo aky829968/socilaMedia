@@ -69,8 +69,8 @@ const FriendProfile = () => {
             <div className=" w-[70%] md:w-auto">
               <img
                 className="w-[100%] h-40 z-10 rounded-full  border-white "
-                // src={userData.profilePic}
-                src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
+                src={userData.profilePic}
+                // src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
               />
             </div>
 
