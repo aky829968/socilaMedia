@@ -40,7 +40,7 @@ const Chat = () => {
   };
   const getchat = async () => {
     const res = await axios.get(
-      `https://socilamedia-1.onrender.com/message/getchat/${location.state._id}`,
+      `https://socilamedia-1.onrender.com/message/getChat/${location.state._id}`,
       {
         headers: {
           Authorization: userDetails.token,
