@@ -218,7 +218,7 @@ const Navbar = () => {
           <img
             onClick={() => setMenu(!menu)}
             className="w-9 h-9 rounded-full cursor-pointer"
-            src={userData.profilePic}
+            src={userData.profilePic?userData.profilePic:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-978409_1280.png"}
           />
           {menu && (
             <ul className=" transition-all ease-linear absolute right-0 px-2 w-44 py-2  bg-slate-100 border-2  top-[120%] rounded-md">

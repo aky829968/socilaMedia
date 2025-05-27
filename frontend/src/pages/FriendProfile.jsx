@@ -25,7 +25,7 @@ const FriendProfile = () => {
   };
   const getPosts = async () => {
     const res = await axios.get(
-      `http://localhost:8080/post/getfriendpost/${location.state}`
+      `https://socilamedia-1.onrender.com/post/getfriendpost/${location.state}`
     );
 
     const data = res.data;
@@ -41,7 +41,7 @@ const FriendProfile = () => {
 
   const handleFollow = async () => {
     const res = await axios.post(
-      `http://localhost:8080/user/followuser/${location.state}`,
+      `https://socilamedia-1.onrender.com/user/followuser/${location.state}`,
       {},
       {
         headers: {
@@ -78,7 +78,6 @@ const FriendProfile = () => {
               <div>
                 <h2 className=" text-2xl font-bold font-serif text-blue-600">
                   {userData.name}
-                  
                 </h2>
                 <p>{userData.bio}</p>
                 <div className="flex gap-1 md:gap-10">

@@ -5,15 +5,7 @@ const userModel = require("../models/userModel");
 const authUser = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  // Check if the Authorization header is present
-  // if (!authHeader || !authHeader.startsWith("Bearer ")) {
-  //   return res.status(401).json({
-  //     message: "Authorization token missing or invalid",
-  //     success: false,
-  //   });
-  // }
 
-  // Extract the token
   const token = authHeader;
 
   if (!token) {
