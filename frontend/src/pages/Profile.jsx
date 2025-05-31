@@ -151,7 +151,7 @@ const Profile = () => {
   return (
     <div className=" w-[95%] md:w-[85%]  mx-auto ">
       <div className=" max-h-[40vw] relative ">
-        <img className="w-40 h-40 object-cover rounded-full border-4 border-white" src={userData.coverPic} />
+        <img className="w-full h-32 md:h-56" src={userData.coverPic} />
         <label
           className="absolute top-4 left-4 bg-transparent  rounded-full p-1 cursor-pointer"
           htmlFor="cover"
@@ -170,7 +170,7 @@ const Profile = () => {
           <div className="flex flex-row-reverse   md:flex md:flex-row items-center    ">
             <div className="   w-[70%] md:w-auto    ">
               <img
-                className="w-[100%] h-40 z-10 rounded-full  border-white "
+               className="w-40 h-40 object-cover rounded-full border-4 border-white"
                 src={userData.profilePic}
                 // src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
               />
