@@ -68,7 +68,7 @@ const FriendProfile = () => {
           <div className="flex flex-row-reverse   md:flex md:flex-row items-center      ">
             <div className=" w-[70%] md:w-auto">
               <img
-                className="w-[100%] h-40 z-10 rounded-full  border-white "
+                className="w-40 h-40 object-cover rounded-full border-4 border-white"
                 src={userData.profilePic}
                 // src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
               />
