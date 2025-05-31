@@ -151,7 +151,7 @@ const Profile = () => {
   return (
     <div className=" w-[95%] md:w-[85%]  mx-auto ">
       <div className=" max-h-[40vw] relative ">
-        <img className="w-full h-32 md:h-56" src={userData.coverPic} />
+        <img className="w-40 h-40 object-cover rounded-full border-4 border-white" src={userData.coverPic} />
         <label
           className="absolute top-4 left-4 bg-transparent  rounded-full p-1 cursor-pointer"
           htmlFor="cover"
