@@ -127,7 +127,7 @@ function forget(email, resetToken) {
       from: '" 🙌✌SocialConnect" <adityakumar262003@gmail.com>', // sender address
       to: email, // list of receivers
       subject: "Reset Password🤦‍♂️", // Subject line
-      text: `Please click below link to reset your password \n "http://localhost:8080/user/token/${resetToken}"`, // plain text body
+      text: `Please click below link to reset your password \n "https://socilamedia-1.onrender.com/user/token/${resetToken}"`, // plain text body
     });
 
     // console.log("Message sent: %s", info.messageId);
